@@ -59,6 +59,17 @@ mlruns/
 .link-cache.json
 .claude/
 
+*.bin
+*.safetensors
+*.pt
+*.onnx
+data/*.parquet
+data/*.csv
+models/
+imdb_train.csv
+imdb_train.json
+imdb_train.parquet
+
 # Keep local Claude settings ignored, but publish the portable tutor mirrors
 # and their runtime references so a fresh clone can discover them.
 !.claude/

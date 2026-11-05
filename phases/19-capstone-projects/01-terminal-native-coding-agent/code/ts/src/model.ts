@@ -1,5 +1,11 @@
-import type { ModelTurn, Status, ToolCall, TodoItem } from "./types.ts";
-import type { PlanState } from "./plan.ts";
+import type {
+  AgentModel,
+  ModelContext,
+  ModelTurn,
+  Status,
+  ToolCall,
+  TodoItem,
+} from "./types.ts";
 
 type ScriptStep = {
   plan: ReadonlyArray<readonly [string, Status]>;
@@ -41,8 +47,9 @@ const SCRIPT: ScriptStep[] = [
   },
 ];
 
-export class ScriptedModel {
-  step(_plan: PlanState, turn: number): ModelTurn {
+export class ScriptedModel implements AgentModel {
+  step(context: ModelContext): ModelTurn {
+    const turn = context.observations.length;
     if (turn >= SCRIPT.length) {
       return { plan: [], tool: null, tokens: 200, cost: 0.005 };
     }

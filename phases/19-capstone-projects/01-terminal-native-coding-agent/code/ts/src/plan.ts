@@ -1,4 +1,4 @@
-import type { Status, TodoItem } from "./types.ts";
+import type { BudgetLimit, Status, TodoItem } from "./types.ts";
 
 export class PlanState {
   goal: string;
@@ -45,7 +45,7 @@ export class Budget {
     this.dollarsUsed += dollars;
   }
 
-  exceeded(): string | null {
+  exceeded(): BudgetLimit | null {
     if (this.turnsUsed >= this.maxTurns) return "turn_limit";
     if (this.tokensUsed >= this.maxTokens) return "token_limit";
     if (this.dollarsUsed >= this.maxDollars) return "dollar_limit";
